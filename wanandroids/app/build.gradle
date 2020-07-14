@@ -52,4 +52,8 @@ dependencies {
     //butterknife
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    //底部导航栏
+    implementation 'com.github.wenchaosong:BottomBar:3.0.7'
+
 }
