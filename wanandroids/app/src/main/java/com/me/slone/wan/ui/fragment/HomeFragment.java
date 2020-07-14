@@ -1,0 +1,34 @@
+package com.me.slone.wan.ui.fragment;
+
+import com.me.slone.wan.R;
+import com.me.slone.wan.common.MyFragment;
+
+/**
+ * Author：diankun
+ * Time：20-7-14 下午3:51
+ * Description: 首页
+ */
+public class HomeFragment extends MyFragment {
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
+    }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+
+    @Override
+    public boolean isStatusBarEnabled() {
+        // 使用沉浸式状态栏
+        return !super.isStatusBarEnabled();
+    }
+}

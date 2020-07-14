@@ -1,15 +1,11 @@
 apply plugin: 'com.android.application'
+apply from: "../config.gradle"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+
 
     defaultConfig {
         applicationId "com.me.slone.wan"
-        minSdkVersion 18
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,11 +22,6 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "false"
         }
     }
-
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
@@ -41,6 +32,31 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+
+    // 基础库（不包任何第三方框架）
+    implementation project(':base')
+    // 自定义 View
+    implementation project(':widget')
+
+    // 吐司框架：https://github.com/getActivity/ToastUtils
+    implementation 'com.hjq:toast:8.0'
+
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.hjq:xxpermissions:6.2'
+
+    // 标题栏框架：https://github.com/getActivity/TitleBar
+    implementation 'com.hjq:titlebar:6.0'
+
+    // 状态栏沉浸：https://github.com/gyf-dev/ImmersionBar
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    // 日志调试：https://github.com/getActivity/Logcat
+    debugImplementation 'com.hjq:logcat:8.0'
+
+    // 内存泄漏：https://github.com/square/leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0'
+
+
     // 网络请求依赖
     implementation "io.reactivex.rxjava2:rxjava:2.1.0"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
@@ -50,10 +66,20 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 
     //butterknife
-    implementation 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    //implementation 'com.jakewharton:butterknife:10.1.0'
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    // ButterKnife 注解库：https://github.com/JakeWharton/butterknife
+    if (project.hasProperty('android.injected.invoked.from.ide')) {
+        // 开发时使用运行时注解，提升 IDE 编译速度
+        implementation 'com.jakewharton:butterknife-reflect:10.2.0'
+    } else {
+        // 打包时使用编译时注解，提升 APP 运行速度
+        implementation 'com.jakewharton:butterknife:10.2.0'
+        annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+    }
 
     //底部导航栏
     implementation 'com.github.wenchaosong:BottomBar:3.0.7'
+
 
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">wanandroids</string>
+
+
+
+    <string name="common_loading">加载中&#8230;</string>
+    <string name="home_nav_found">发现</string>
 </resources>

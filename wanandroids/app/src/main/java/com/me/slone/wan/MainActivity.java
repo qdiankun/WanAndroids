@@ -1,9 +1,7 @@
 package com.me.slone.wan;
 
-import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -13,15 +11,16 @@ import com.bottom.PageNavigationView;
 import com.bottom.item.BaseTabItem;
 import com.bottom.listener.OnTabItemSelectedListener;
 import com.me.slone.wan.bean.Banner;
+import com.me.slone.wan.common.MyActivity;
 import com.me.slone.wan.network.NetworkManager;
 import com.me.slone.wan.network.observer.SilenceSubscriber;
 import com.me.slone.wan.network.response.ResponseTransformer;
 import com.me.slone.wan.network.schedulers.RxSchedulersHelper;
-import com.me.slone.wan.ui.FragmentAdapter;
-import com.me.slone.wan.ui.HomeFragment;
-import com.me.slone.wan.ui.ProjectFragment;
-import com.me.slone.wan.ui.SystemFragment;
-import com.me.slone.wan.ui.UserFragment;
+import com.me.slone.wan.ui.adapter.FragmentAdapter;
+import com.me.slone.wan.ui.fragment.HomeFragment;
+import com.me.slone.wan.ui.fragment.ProjectFragment;
+import com.me.slone.wan.ui.fragment.SystemFragment;
+import com.me.slone.wan.ui.fragment.UserFragment;
 import com.me.slone.wan.utils.KLog;
 import com.me.slone.wan.view.OnlyIconView;
 
@@ -29,10 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MyActivity {
 
     @BindView(R.id.main_viewpager)
     ViewPager mViewPager;
@@ -42,39 +40,22 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> mFragments = new ArrayList<>();
     private FragmentPagerAdapter mFragmentAdapter;
 
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
-        initFragments();
-        initBottomBar();
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
-    private void initFragments() {
-        HomeFragment homeFragment = new HomeFragment();
-        SystemFragment systemFragment = new SystemFragment();
-        ProjectFragment projectFragment = new ProjectFragment();
-        UserFragment userFragment = new UserFragment();
-        mFragments.add(homeFragment);
-        mFragments.add(systemFragment);
-        mFragments.add(projectFragment);
-        mFragments.add(userFragment);
-    }
-
-    private void initBottomBar() {
-        final PageNavigationView.CustomBuilder custom = mBottomBar.custom();
+    @Override
+    protected void initView() {
+        initViewPager();
+        PageNavigationView.CustomBuilder custom = mBottomBar.custom();
         NavigationController build = custom
                 .addItem(newItem(R.mipmap.home_no, R.mipmap.home))
                 .addItem(newItem(R.mipmap.tree_no, R.mipmap.tree))
                 .addItem(newItem(R.mipmap.project_no, R.mipmap.project_yes))
                 .addItem(newItem(R.mipmap.user_no, R.mipmap.user))
                 .build();
-        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(),mFragments);
-        mViewPager.setAdapter(mFragmentAdapter);
         build.setupWithViewPager(mViewPager);
         build.addTabItemSelectedListener(new OnTabItemSelectedListener() {
             @Override
@@ -89,6 +70,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected boolean isStatusBarEnabled() {
+        return false;
+    }
+
+    private void initViewPager() {
+        HomeFragment homeFragment = new HomeFragment();
+        SystemFragment systemFragment = new SystemFragment();
+        ProjectFragment projectFragment = new ProjectFragment();
+        UserFragment userFragment = new UserFragment();
+        mFragments.add(homeFragment);
+        mFragments.add(systemFragment);
+        mFragments.add(projectFragment);
+        mFragments.add(userFragment);
+        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(),mFragments);
+        mViewPager.setAdapter(mFragmentAdapter);
+    }
 
     //创建一个Item
     private BaseTabItem newItem(int drawable, int checkedDrawable) {
