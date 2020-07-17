@@ -89,7 +89,7 @@ public abstract class MyActivity extends BaseActivity
         }
 
         bind = ButterKnife.bind(this);
-        //initImmersion();
+        initImmersion();
     }
 
     /**

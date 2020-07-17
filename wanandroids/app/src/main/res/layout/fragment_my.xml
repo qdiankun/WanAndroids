@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.hjq.bar.TitleBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="我的"/>
+        app:backButton="false"
+        app:barStyle="light"
+        app:leftTitle="@string/title_my"
+        app:leftSize="@dimen/dimen_title"/>
 
 </LinearLayout>

@@ -1,20 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
-
-    <com.hjq.bar.TitleBar
+    <com.hjq.bar.TitleBar xmlns:title="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:backButton="false"
-        app:title="@string/home_nav_found" />
+        title:backButton="false"
+        title:barStyle="light"
+        title:leftSize="@dimen/dimen_title"
+        title:leftTitle="首页" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="首页"/>
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_daily_white"
+        app:srlEnablePreviewInEditMode="true">
+        <!--srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色-->
+        <!--srlEnablePreviewInEditMode 可以开启和关闭预览功能-->
+
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_daily_mode">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+
+                    <LinearLayout
+                        android:id="@+id/main_ll_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/main_card_top"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="18dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginEnd="18dp"
+                            android:layout_marginBottom="12dp"
+                            android:elevation="@dimen/dp_8"
+                            app:cardCornerRadius="@dimen/dp_8"
+                            app:cardElevation="@dimen/dp_8"
+                            app:layout_collapseMode="parallax">
+
+                            <com.ms.banner.Banner
+                                android:id="@+id/main_banner"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:id="@+id/main_ll_btn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_4"
+                            android:paddingVertical="@dimen/dp_4">
+
+                            <Button
+                                android:id="@+id/main_top_btn_navi"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@mipmap/navigation"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:padding="@dimen/dp_4"
+                                android:text="导航"
+                                android:textColor="@color/text_daily_mode"
+                                android:textSize="@dimen/home_btn_tv_size" />
+
+                            <Button
+                                android:id="@+id/main_top_btn_articles"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@mipmap/article"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:padding="@dimen/dp_4"
+                                android:text="文章"
+                                android:textColor="@color/text_daily_mode"
+                                android:textSize="@dimen/home_btn_tv_size" />
+
+                            <Button
+                                android:id="@+id/main_top_btn_project"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@mipmap/project"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:padding="@dimen/dp_4"
+                                android:text="项目"
+                                android:textColor="@color/text_daily_mode"
+                                android:textSize="@dimen/home_btn_tv_size" />
+
+                            <Button
+                                android:id="@+id/main_top_btn_account"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:drawableTop="@mipmap/official_account"
+                                android:drawablePadding="@dimen/dp_8"
+                                android:padding="@dimen/dp_4"
+                                android:text="公众号"
+                                android:textColor="@color/text_daily_mode"
+                                android:textSize="@dimen/home_btn_tv_size" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp_8"
+                android:background="@color/bg_daily_mode"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_collapseMode="pin">
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingHorizontal="18dp">
+
+                        <LinearLayout
+                            android:id="@+id/main_ll_top_title"
+                            android:layout_width="match_parent"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="12dp">
+
+                            <TextView
+                                android:id="@+id/main_tv_top_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableLeft="@mipmap/top_article"
+                                android:text="  置顶"
+                                android:textColor="@color/text_daily_mode"
+                                android:textSize="@dimen/home_title_one_size" />
+
+                            <TextView
+                                android:id="@+id/main_btn_top_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:text="更多"
+                                android:textColor="@color/text_daily_mode" />
+
+                        </LinearLayout>
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/main_rv_top_article"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/main_ll_top_title"
+                            tools:listitem="@layout/rv_article_normal" />
+
+                        <LinearLayout
+                            android:id="@+id/main_ll_more_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/main_rv_top_article"
+                            android:layout_marginVertical="18dp">
+
+                            <TextView
+                                android:id="@+id/main_tv_more_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableLeft="@mipmap/top_article"
+                                android:text="@string/home_article_title"
+                                android:textColor="@color/text_daily_mode"
+                                android:textSize="@dimen/home_title_one_size" />
+
+
+                            <TextView
+                                android:id="@+id/main_btn_more_top"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:text="@string/home_back_top"
+                                android:textColor="@color/text_daily_mode" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/main_rv_more_article"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/main_ll_more_title"
+                            tools:listitem="@layout/rv_article_normal" />
+
+                    </RelativeLayout>
+                </androidx.core.widget.NestedScrollView>
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_daily_mode" />
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </LinearLayout>

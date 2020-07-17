@@ -24,4 +24,11 @@ public class ProjectFragment extends MyFragment {
     protected void initData() {
 
     }
+
+
+    @Override
+    public boolean isStatusBarEnabled() {
+        // 使用沉浸式状态栏
+        return !super.isStatusBarEnabled();
+    }
 }

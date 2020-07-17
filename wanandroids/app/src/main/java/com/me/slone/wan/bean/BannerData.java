@@ -5,7 +5,7 @@ package com.me.slone.wan.bean;
  * Time：20-7-13 下午3:45
  * Description:
  */
-public class Banner {
+public class BannerData {
 
     private String desc;
     private int id;

@@ -10,18 +10,12 @@ import com.bottom.NavigationController;
 import com.bottom.PageNavigationView;
 import com.bottom.item.BaseTabItem;
 import com.bottom.listener.OnTabItemSelectedListener;
-import com.me.slone.wan.bean.Banner;
 import com.me.slone.wan.common.MyActivity;
-import com.me.slone.wan.network.NetworkManager;
-import com.me.slone.wan.network.observer.SilenceSubscriber;
-import com.me.slone.wan.network.response.ResponseTransformer;
-import com.me.slone.wan.network.schedulers.RxSchedulersHelper;
 import com.me.slone.wan.ui.adapter.FragmentAdapter;
 import com.me.slone.wan.ui.fragment.HomeFragment;
 import com.me.slone.wan.ui.fragment.ProjectFragment;
 import com.me.slone.wan.ui.fragment.SystemFragment;
 import com.me.slone.wan.ui.fragment.UserFragment;
-import com.me.slone.wan.utils.KLog;
 import com.me.slone.wan.view.OnlyIconView;
 
 import java.util.ArrayList;
@@ -91,6 +85,7 @@ public class MainActivity extends MyActivity {
         mFragments.add(userFragment);
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(),mFragments);
         mViewPager.setAdapter(mFragmentAdapter);
+        mViewPager.setOffscreenPageLimit(mFragments.size());
     }
 
     //创建一个Item
@@ -102,17 +97,6 @@ public class MainActivity extends MyActivity {
 
     @OnClick({R.id.btn_baner})
     public void bannerClick(View view) {
-        NetworkManager.getInstance()
-                .getRequest()
-                .getBanner()
-                .compose(ResponseTransformer.handleResult())
-                .compose(RxSchedulersHelper.applySchedulers())
-                .subscribe(new SilenceSubscriber<List<Banner>>() {
-                    @Override
-                    public void success(List<Banner> banners) {
-                        KLog.i(banners);
-                    }
-                });
 
     }
 }

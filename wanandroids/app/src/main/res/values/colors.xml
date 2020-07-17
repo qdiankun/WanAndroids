@@ -6,7 +6,13 @@
     <color name="windowBackground">#F4F4F4</color>
     <color name="textColor">#333333</color>
     <color name="textColorHint">#757575</color>
+    <color name="bg_rv_item_tv">#e6e7ed</color>
 
 
+    <color name="bg_daily_white">#FFF</color>
     <color name="bg_daily_mode">#FFF</color>
+    <color name="text_daily_mode_one">#000</color>
+    <color name="text_daily_mode">#393B4D</color>
+
+
 </resources>
