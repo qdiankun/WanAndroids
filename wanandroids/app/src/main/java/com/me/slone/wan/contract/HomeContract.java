@@ -43,7 +43,23 @@ public interface HomeContract  {
     interface Presenter extends AbstractPresenter<View> {
 
 
-        void getData();
+        void getData(int page);
+
+        /**
+         * 获取更多文章列表o
+         * @param page
+         */
+        void getMoreArticle(int page);
+
+        /**
+         * 获取置顶文章数据
+         */
+        void getHomeTopArticle();
+
+        /**
+         * 获取banner数据
+         */
+        void getHomeTopImgBanner();
 
     }
 

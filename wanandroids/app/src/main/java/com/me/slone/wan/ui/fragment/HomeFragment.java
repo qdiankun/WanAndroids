@@ -92,6 +92,8 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
         mRefreshView.setEnableLoadMore(true);
         mRefreshView.setOnRefreshListener(refreshLayout -> {
+            mMoreList.clear();
+            mTopList.clear();
             mPresenter.getHomeTopArticle();
             mPresenter.getHomeTopImgBanner();
             page = 0;
