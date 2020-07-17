@@ -1,4 +1,4 @@
-package com.me.slone.wan.common;
+package com.me.slone.wan.base;
 
 import android.content.Intent;
 import android.os.Bundle;

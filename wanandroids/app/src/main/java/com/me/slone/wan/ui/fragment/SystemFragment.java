@@ -1,7 +1,7 @@
 package com.me.slone.wan.ui.fragment;
 
 import com.me.slone.wan.R;
-import com.me.slone.wan.common.MyFragment;
+import com.me.slone.wan.base.MyFragment;
 
 /**
  * Author：diankun

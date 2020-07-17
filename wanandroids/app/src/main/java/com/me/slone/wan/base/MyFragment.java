@@ -1,4 +1,4 @@
-package com.me.slone.wan.common;
+package com.me.slone.wan.base;
 
 import android.view.ViewGroup;
 
@@ -9,6 +9,7 @@ import com.hjq.bar.TitleBar;
 import com.hjq.base.BaseFragment;
 import com.me.slone.wan.action.TitleBarAction;
 import com.me.slone.wan.action.ToastAction;
+import com.me.slone.wan.base.MyActivity;
 
 import butterknife.ButterKnife;
 

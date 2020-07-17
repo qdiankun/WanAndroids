@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.WebActivity">
+
+
+    <com.hjq.bar.TitleBar
+        android:id="@+id/web_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/bg_daily_mode"
+        app:title="@string/web_title"
+        app:lineVisible="false"
+        app:titleColor="@color/text_daily_mode"
+        app:titleSize="17dp" />
+
+    <com.me.slone.wan.view.ProgressWebview
+        android:id="@+id/web_x5_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/web_titlebar" />
+
+
+</LinearLayout>

@@ -14,5 +14,7 @@
     <color name="text_daily_mode_one">#000</color>
     <color name="text_daily_mode">#393B4D</color>
 
-
+    <color name="progress_bar_web_start">#37b537</color>
+    <color name="progress_bar_web_center">#37b537</color>
+    <color name="progress_bar_web_end">#37b537</color>
 </resources>

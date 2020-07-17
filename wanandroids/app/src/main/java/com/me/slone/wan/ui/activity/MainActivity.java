@@ -1,4 +1,4 @@
-package com.me.slone.wan;
+package com.me.slone.wan.ui.activity;
 
 import android.view.View;
 
@@ -10,7 +10,8 @@ import com.bottom.NavigationController;
 import com.bottom.PageNavigationView;
 import com.bottom.item.BaseTabItem;
 import com.bottom.listener.OnTabItemSelectedListener;
-import com.me.slone.wan.common.MyActivity;
+import com.me.slone.wan.R;
+import com.me.slone.wan.base.MyActivity;
 import com.me.slone.wan.ui.adapter.FragmentAdapter;
 import com.me.slone.wan.ui.fragment.HomeFragment;
 import com.me.slone.wan.ui.fragment.ProjectFragment;

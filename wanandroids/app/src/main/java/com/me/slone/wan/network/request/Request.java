@@ -1,12 +1,15 @@
 package com.me.slone.wan.network.request;
 
+import com.me.slone.wan.bean.Article;
 import com.me.slone.wan.bean.BannerData;
+import com.me.slone.wan.bean.MoreArticle;
 import com.me.slone.wan.network.response.Response;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 /**
  * Author：diankun
@@ -15,9 +18,25 @@ import retrofit2.http.GET;
  */
 public interface Request {
 
-    public static String HOST = "https://www.wanandroid.com/";
+    String HOST = "https://www.wanandroid.com/";
 
     @GET("/banner/json")
     Observable<Response<List<BannerData>>> getBanner();
+
+
+    /**
+     * 置顶文章
+     * @return
+     */
+    @GET("/article/top/json")
+    Observable<Response<List<Article>>> getTopArticle();
+
+
+    /**
+     * 更多文章
+     * @return
+     */
+    @GET("/article/list/{page}/json")
+    Observable<Response<MoreArticle>> getArticle(@Path("page") int page);
 
 }

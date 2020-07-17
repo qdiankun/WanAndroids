@@ -2,6 +2,8 @@ package com.me.slone.wan.network.interceptor;
 
 import android.util.Log;
 
+import com.me.slone.wan.utils.KLog;
+
 import java.io.IOException;
 import java.util.Locale;
 
@@ -29,15 +31,17 @@ public class LogInterceptor implements Interceptor {
 //                .build()
                 ;
 
-        Log.e(TAG,"request:" + request.toString());
+        KLog.i(TAG,"request:" + request.toString());
         long t1 = System.nanoTime();
         okhttp3.Response response = chain.proceed(chain.request());
         long t2 = System.nanoTime();
-        Log.e(TAG,String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
+        KLog.i(TAG,String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
                 response.request().url(), (t2 - t1) / 1e6d, response.headers()));
         okhttp3.MediaType mediaType = response.body().contentType();
         String content = response.body().string();
-        Log.e(TAG, "response body:" + content);
+        KLog.i("response body:\n");
+        KLog.json(content);
+        //Log.e(TAG, "response body:" + content);
         return response.newBuilder()
                 .body(okhttp3.ResponseBody.create(mediaType, content))
 //                .header("Authorization", Your.sToken)
