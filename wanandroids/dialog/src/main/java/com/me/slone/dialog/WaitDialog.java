@@ -1,4 +1,4 @@
-package com.me.slone.wan.ui.dialog;
+package com.me.slone.dialog;
 
 import android.content.Context;
 import android.view.View;
@@ -8,7 +8,6 @@ import androidx.annotation.StringRes;
 
 import com.hjq.base.BaseDialog;
 import com.hjq.base.action.AnimAction;
-import com.me.slone.wan.R;
 
 /**
  *    author : Android 轮子哥
@@ -36,9 +35,15 @@ public final class WaitDialog {
         public Builder setMessage(@StringRes int id) {
             return setMessage(getString(id));
         }
+
         public Builder setMessage(CharSequence text) {
             mMessageView.setText(text);
             mMessageView.setVisibility(text == null ? View.GONE : View.VISIBLE);
+            return this;
+        }
+
+        public Builder setCancelListener(BaseDialog.OnCancelListener listener){
+            addOnCancelListener(listener);
             return this;
         }
     }

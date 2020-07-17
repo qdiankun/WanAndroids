@@ -1,4 +1,4 @@
-package com.me.slone.wan.view;
+package com.me.slone.dialog.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,7 +16,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import com.me.slone.wan.R;
+import com.me.slone.dialog.R;
 
 
 /**

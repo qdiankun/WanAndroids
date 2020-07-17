@@ -31,7 +31,7 @@ public abstract class BaseFragment<A extends BaseActivity>
         extends Fragment implements ContextAction, HandlerAction, ClickAction, BundleAction {
 
     /** Activity 对象 */
-    private A mActivity;
+    protected A mActivity;
     /** 根布局 */
     private View mRootView;
     /** 是否初始化过 */

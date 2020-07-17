@@ -12,11 +12,11 @@ import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.hjq.base.BaseActivity;
 import com.hjq.base.BaseDialog;
+import com.me.slone.dialog.WaitDialog;
 import com.me.slone.wan.R;
 import com.me.slone.wan.action.SwipeAction;
 import com.me.slone.wan.action.TitleBarAction;
 import com.me.slone.wan.action.ToastAction;
-import com.me.slone.wan.ui.dialog.WaitDialog;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
