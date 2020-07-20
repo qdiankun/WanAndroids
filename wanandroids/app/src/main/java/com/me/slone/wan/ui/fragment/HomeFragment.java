@@ -64,29 +64,14 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
             mActivity.startActivity(intent);
         });
 
-        mTopAdapter = new ArticleAdapter(mActivity);
-        mTopList = new ArrayList<>();
-        mTopAdapter.setData(mTopList);
-        mTopAdapter.setOnItemClickListener((recyclerView, itemView, position) -> {
-            Article article = mTopList.get(position);
-            Intent intent = new Intent(mActivity, WebActivity.class);
-            intent.putExtra(Constants.ARG_URL,article.getLink());
-            mActivity.startActivity(intent);
-        });
-        mTopRecyclerView.setNestedScrollingEnabled(false);
-        mTopRecyclerView.setAdapter(mTopAdapter);
+        initTopView();
 
-        mMoreAdapter = new ArticleAdapter(mActivity);
-        mMoreList = new ArrayList<>();
-        mMoreAdapter.setData(mMoreList);
-        mMoreAdapter.setOnItemClickListener((recyclerView, itemView, position) -> {
-            Article article = mMoreList.get(position);
-            Intent intent = new Intent(mActivity, WebActivity.class);
-            intent.putExtra(Constants.ARG_URL,article.getLink());
-            mActivity.startActivity(intent);
-        });
-        mMoreRecyclerView.setAdapter(mMoreAdapter);
+        initMoreView();
 
+        initRefreshView();
+    }
+
+    private void initRefreshView() {
         mRefreshView.setDragRate(0.5f);//显示下拉高度/手指真实下拉高度=阻尼效果
         mRefreshView.setReboundDuration(600);//回弹动画时长（毫秒）
         mRefreshView.setEnableRefresh(true);//是否启用下拉刷新功能
@@ -94,10 +79,8 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
         mRefreshView.setOnRefreshListener(refreshLayout -> {
             mMoreList.clear();
             mTopList.clear();
-            mPresenter.getHomeTopArticle();
-            mPresenter.getHomeTopImgBanner();
             page = 0;
-            mPresenter.getMoreArticle(page);
+            mPresenter.getRefreshData(page);
             if (onFinishLoad()) {
                 mRefreshView.finishRefresh();
             }
@@ -109,7 +92,33 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
                 mRefreshView.finishLoadMore();
             }
         });
+    }
 
+    private void initMoreView() {
+        mMoreAdapter = new ArticleAdapter(mActivity);
+        mMoreList = new ArrayList<>();
+        mMoreAdapter.setData(mMoreList);
+        mMoreAdapter.setOnItemClickListener((recyclerView, itemView, position) -> {
+            Article article = mMoreList.get(position);
+            Intent intent = new Intent(mActivity, WebActivity.class);
+            intent.putExtra(Constants.ARG_URL,article.getLink());
+            mActivity.startActivity(intent);
+        });
+        mMoreRecyclerView.setAdapter(mMoreAdapter);
+    }
+
+    private void initTopView() {
+        mTopAdapter = new ArticleAdapter(mActivity);
+        mTopList = new ArrayList<>();
+        mTopAdapter.setData(mTopList);
+        mTopAdapter.setOnItemClickListener((recyclerView, itemView, position) -> {
+            Article article = mTopList.get(position);
+            Intent intent = new Intent(mActivity, WebActivity.class);
+            intent.putExtra(Constants.ARG_URL,article.getLink());
+            mActivity.startActivity(intent);
+        });
+        mTopRecyclerView.setNestedScrollingEnabled(false);
+        mTopRecyclerView.setAdapter(mTopAdapter);
     }
 
     @Override
@@ -118,9 +127,7 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
         mPresenter = new HomePresenter();
         mPresenter.attachView(this);
         //get data
-        mPresenter.getHomeTopImgBanner();
-        mPresenter.getHomeTopArticle();
-        mPresenter.getMoreArticle(page);
+        mPresenter.getRefreshData(page);
     }
 
     @Override
@@ -148,6 +155,7 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
 
     @Override
     public void refreshMoreArticle(MoreArticle moreArticle) {
+        hideDialog();
         if(moreArticle!=null
                 && moreArticle.getDatas()!=null
                 && !moreArticle.getDatas().isEmpty()){
@@ -164,27 +172,27 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
     }
 
     @Override
-    public void showErrorMsg(String errorMsg) {
-
-    }
-
-    @Override
     public void showNormal() {
-
+        hideDialog();
     }
 
     @Override
     public void showError() {
-
+        hideDialog();
     }
 
     @Override
     public void showLoading() {
-
+        showDialog();
     }
 
     @Override
     public void reload() {
+
+    }
+
+    @Override
+    public void showErrorMsg(String errorMsg) {
 
     }
 

@@ -9,7 +9,6 @@ import com.hjq.bar.TitleBar;
 import com.hjq.base.BaseFragment;
 import com.me.slone.wan.action.TitleBarAction;
 import com.me.slone.wan.action.ToastAction;
-import com.me.slone.wan.base.MyActivity;
 
 import butterknife.ButterKnife;
 
@@ -23,7 +22,7 @@ public abstract class MyFragment<A extends MyActivity> extends BaseFragment<A>
         implements ToastAction, TitleBarAction {
 
     /** 标题栏对象 */
-    private TitleBar mTitleBar;
+    protected TitleBar mTitleBar;
     /** 状态栏沉浸 */
     private ImmersionBar mImmersionBar;
 

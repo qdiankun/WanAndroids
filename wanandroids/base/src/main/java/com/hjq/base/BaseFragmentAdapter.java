@@ -3,6 +3,7 @@ package com.hjq.base;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -117,5 +118,11 @@ public class BaseFragmentAdapter<F extends Fragment> extends FragmentPagerAdapte
         if (mViewPager != null) {
             mViewPager.setCurrentItem(position, smoothScroll);
         }
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return super.getPageTitle(position);
     }
 }

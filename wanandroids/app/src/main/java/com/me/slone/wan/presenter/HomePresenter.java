@@ -11,8 +11,8 @@ import com.me.slone.wan.network.response.Response;
 import com.me.slone.wan.network.response.ResponseCode;
 import com.me.slone.wan.network.response.ResponseTransformer;
 import com.me.slone.wan.network.schedulers.RxSchedulersHelper;
+import com.me.slone.wan.utils.KLog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -32,7 +32,9 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
     }
 
     @Override
-    public void getData(int page) {
+    public void getRefreshData(int page) {
+
+        mView.showLoading();
 
         Observable<Response<List<Article>>> topObservable = NetworkManager.getInstance()
                 .getRequest()
@@ -59,12 +61,17 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
                         if (response.getErrorCode() == ResponseCode.OK_CODE) {
                             Object object = response.getData();
                             if (object instanceof MoreArticle) {
-
-                            } else if (object instanceof List && ((List) object).size() > 0) {
+                                KLog.i("moreArticle :"+object);
+                                mView.refreshMoreArticle((MoreArticle) object);
+                                return;
+                            }
+                            if (object instanceof List && ((List) object).size() > 0) {
                                 if ((((List) object).get(0) instanceof BannerData)) {
-
+                                    KLog.i("banner::"+object);
+                                    mView.refreshBanner((List<BannerData>) object);
                                 } else if ((((List) object).get(0) instanceof Article)) {
-
+                                    KLog.i("article::"+object);
+                                    mView.refreshTopArticle((List<Article>) object);
                                 }
                             }
                         }
@@ -72,12 +79,12 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.showError();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        mView.showNormal();
                     }
                 });
     }
@@ -97,40 +104,4 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
                 });
     }
 
-    @Override
-    public void getHomeTopArticle() {
-        NetworkManager.getInstance()
-                .getRequest()
-                .getTopArticle()
-                .compose(ResponseTransformer.handleResult())
-                .compose(RxSchedulersHelper.applySchedulers())
-                .subscribe(new ProgressSubscriber<List<Article>>(mView.getContext(), false) {
-                    @Override
-                    public void success(List<Article> articles) {
-                        //KLog.i("article:"+articles);
-                        mView.refreshTopArticle(articles);
-                    }
-                });
-    }
-
-    @Override
-    public void getHomeTopImgBanner() {
-        NetworkManager.getInstance()
-                .getRequest()
-                .getBanner()
-                .compose(ResponseTransformer.handleResult())
-                .compose(RxSchedulersHelper.applySchedulers())
-                .subscribe(new ProgressSubscriber<List<BannerData>>(mView.getContext(), true) {
-
-                    @Override
-                    public void success(List<BannerData> bannerData) {
-                        mView.refreshBanner(bannerData);
-                    }
-
-                    @Override
-                    public void onHandledNetError(Throwable throwable) {
-                        super.onHandledNetError(throwable);
-                    }
-                });
-    }
 }
