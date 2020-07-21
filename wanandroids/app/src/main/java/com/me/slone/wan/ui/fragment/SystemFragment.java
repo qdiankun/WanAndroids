@@ -52,7 +52,7 @@ public class SystemFragment extends MyFragment {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mTitleBar.setTitle(titleName[tab.getPosition()]);
+                mTitleBar.setLeftTitle(titleName[tab.getPosition()]);
             }
 
             @Override
@@ -66,7 +66,7 @@ public class SystemFragment extends MyFragment {
             }
         });
 
-        mPagerAdapter = new BaseFragmentAdapter<MyFragment>(this);
+        mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(NaviFragment.newInstance());
         mPagerAdapter.addFragment(TreeFragment.newInstance());
         mViewPager.setAdapter(mPagerAdapter);

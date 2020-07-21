@@ -3,7 +3,9 @@ package com.me.slone.wan.network.request;
 import com.me.slone.wan.bean.Article;
 import com.me.slone.wan.bean.BannerData;
 import com.me.slone.wan.bean.MoreArticle;
+import com.me.slone.wan.bean.Navi;
 import com.me.slone.wan.network.response.Response;
+import com.me.slone.wan.network.response.ResponseCode;
 
 import java.util.List;
 
@@ -38,5 +40,12 @@ public interface Request {
      */
     @GET("/article/list/{page}/json")
     Observable<Response<MoreArticle>> getArticle(@Path("page") int page);
+
+
+    /**
+     * 导航
+     */
+    @GET("/navi/json")
+    Observable<Response<List<Navi>>> getNavi();
 
 }
