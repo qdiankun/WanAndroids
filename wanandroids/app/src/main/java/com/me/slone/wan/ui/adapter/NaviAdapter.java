@@ -56,14 +56,14 @@ public class NaviAdapter extends MyAdapter<Navi> {
             for (int i = 0; i < navi.getArticles().size(); i++) {
                 tagName[i] = navi.getArticles().get(i).getTitle();
             }
-//            tagFlowLayout.setAdapter(new TagAdapter<String>(tagName) {
-//                @Override
-//                public View getView(FlowLayout parent, int position, String s) {
-//                    TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.flow_tv_item, tagFlowLayout, false);
-//                    tv.setText(s);
-//                    return tv;
-//                }
-//            });
+            tagFlowLayout.setAdapter(new TagAdapter<String>(tagName) {
+                @Override
+                public View getView(FlowLayout parent, int position, String s) {
+                    TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.flow_tv_item, tagFlowLayout, false);
+                    tv.setText(s);
+                    return tv;
+                }
+            });
             tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
                 @Override
                 public boolean onTagClick(View view, int position, FlowLayout parent) {

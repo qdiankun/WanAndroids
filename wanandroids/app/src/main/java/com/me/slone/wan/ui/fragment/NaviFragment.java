@@ -7,6 +7,7 @@ import com.me.slone.wan.base.MyFragment;
 import com.me.slone.wan.bean.Navi;
 import com.me.slone.wan.contract.NaviContract;
 import com.me.slone.wan.presenter.NaviPresenter;
+import com.me.slone.wan.ui.adapter.Nav2Adapter;
 import com.me.slone.wan.ui.adapter.NaviAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -28,6 +29,7 @@ public class NaviFragment extends MyFragment implements NaviContract.View {
     SmartRefreshLayout mRefreshView;
 
     private NaviAdapter mAdapter;
+    private Nav2Adapter mNav2Adapter;
     private List<Navi> mList;
     private NaviPresenter mNaviPresenter;
 
@@ -52,6 +54,8 @@ public class NaviFragment extends MyFragment implements NaviContract.View {
 //            intent.putExtra(Constants.ARG_URL,article.getLink());
 //            mActivity.startActivity(intent);
         });
+
+        mNav2Adapter = new Nav2Adapter(R.layout.rv_tree_item,mList);
         mRecyclerView.setAdapter(mAdapter);
 
         mRefreshView.setDragRate(0.5f);//显示下拉高度/手指真实下拉高度=阻尼效果

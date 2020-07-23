@@ -96,8 +96,4 @@ public class MainActivity extends MyActivity {
         return onlyIconItemView;
     }
 
-    @OnClick({R.id.btn_baner})
-    public void bannerClick(View view) {
-
-    }
 }
