@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         title:backButton="false"
         title:barStyle="light"
+        android:visibility="gone"
         title:leftSize="@dimen/dimen_title"
         title:leftTitle="首页" />
 

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    android:background="@color/bg_daily_mode">
 
-    <com.hjq.bar.TitleBar xmlns:title="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        title:backButton="false"
-        title:barStyle="light"
-        title:leftSize="@dimen/dimen_title"
-        title:leftTitle="导航" />
+<!--    <LinearLayout android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        xmlns:android="http://schemas.android.com/apk/res/android" />-->
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_daily_mode">
+<!--    <com.hjq.bar.TitleBar xmlns:title="http://schemas.android.com/apk/res-auto"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        title:backButton="false"-->
+<!--        title:barStyle="light"-->
+<!--        title:leftSize="@dimen/dimen_title"-->
+<!--        android:visibility="gone"-->
+<!--        title:leftTitle="导航" />-->
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -43,7 +44,7 @@
         <LinearLayout
             android:id="@+id/system_ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_collapseMode="pin">
@@ -53,11 +54,11 @@
                 android:id="@+id/system_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"/>
 
 
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</LinearLayout>
+<!--</LinearLayout>-->

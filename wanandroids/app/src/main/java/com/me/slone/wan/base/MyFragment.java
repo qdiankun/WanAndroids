@@ -34,7 +34,7 @@ public abstract class MyFragment<A extends MyActivity> extends BaseFragment<A>
             getTitleBar().setOnTitleBarListener(this);
         }
 
-        initImmersion();
+        //initImmersion();
         super.initFragment();
     }
 
@@ -123,7 +123,7 @@ public abstract class MyFragment<A extends MyActivity> extends BaseFragment<A>
     public void onResume() {
         super.onResume();
         // 重新初始化状态栏
-        statusBarConfig().init();
+        //statusBarConfig().init();
         //UmengClient.onResume(this);
     }
 
