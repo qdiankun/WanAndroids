@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.me.slone.wan.R;
 import com.me.slone.wan.base.MyAdapter;
-import com.me.slone.wan.bean.Children;
 import com.me.slone.wan.bean.Tree;
-import com.me.slone.wan.ui.inter.TagClickListener;
+import com.me.slone.wan.ui.inter.TagTreeClickListener;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -28,7 +27,7 @@ import butterknife.BindView;
  */
 public class TreeAdapter extends MyAdapter<Tree> {
 
-    private TagClickListener tagClickListener;
+    private TagTreeClickListener tagTreeClickListener;
 
     public TreeAdapter(@NonNull Context context) {
         super(context);
@@ -67,17 +66,18 @@ public class TreeAdapter extends MyAdapter<Tree> {
                     return tv;
                 }
             });
-            tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
-                @Override
-                public boolean onTagClick(View view, int position, FlowLayout parent) {
-                    if(tagClickListener!=null){
-                    }
-                    return false;
+            tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
+                if(tagTreeClickListener!=null){
+                    tagTreeClickListener.onTreeClickListener(tree.getChildren().get(position));
                 }
+                return false;
             });
         }
     }
 
+    public void setTagTreeClickListener(TagTreeClickListener tagTreeClickListener) {
+        this.tagTreeClickListener = tagTreeClickListener;
+    }
 
     @Override
     protected RecyclerView.LayoutManager generateDefaultLayoutManager(Context context) {

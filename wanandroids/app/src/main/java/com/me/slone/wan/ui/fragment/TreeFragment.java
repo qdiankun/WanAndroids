@@ -1,13 +1,19 @@
 package com.me.slone.wan.ui.fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hjq.base.action.BundleAction;
 import com.me.slone.wan.R;
 import com.me.slone.wan.base.MyFragment;
 import com.me.slone.wan.bean.Tree;
 import com.me.slone.wan.contract.TreeContract;
 import com.me.slone.wan.presenter.TreePresenter;
+import com.me.slone.wan.ui.activity.ArticleActivity;
 import com.me.slone.wan.ui.adapter.TreeAdapter;
+import com.me.slone.wan.ui.inter.TagTreeClickListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -47,6 +53,13 @@ public class TreeFragment extends MyFragment implements TreeContract.View {
         mTreeAdapter = new TreeAdapter(mActivity);
         mTreeList = new ArrayList<>();
         mTreeAdapter.setData(mTreeList);
+        mTreeAdapter.setTagTreeClickListener(children -> {
+            Intent intent = new Intent(mActivity,ArticleActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("childre",children);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        });
         mRecyclerView.setAdapter(mTreeAdapter);
 
         mRefreshView.setDragRate(0.5f);//显示下拉高度/手指真实下拉高度=阻尼效果

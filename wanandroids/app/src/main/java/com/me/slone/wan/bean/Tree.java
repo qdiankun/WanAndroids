@@ -1,5 +1,6 @@
 package com.me.slone.wan.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,7 +16,7 @@ import java.util.List;
  * "userControlSetTop": false,
  * "visible": 1
  */
-public class Tree {
+public class Tree implements Serializable {
 
     private List<Children> children;
     private int courseId;

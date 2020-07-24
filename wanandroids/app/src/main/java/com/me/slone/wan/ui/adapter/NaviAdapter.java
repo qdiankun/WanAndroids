@@ -14,7 +14,7 @@ import com.me.slone.wan.R;
 import com.me.slone.wan.base.MyAdapter;
 import com.me.slone.wan.bean.Article;
 import com.me.slone.wan.bean.Navi;
-import com.me.slone.wan.ui.inter.TagClickListener;
+import com.me.slone.wan.ui.inter.TagNaviClickListener;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -30,7 +30,7 @@ import butterknife.BindView;
  */
 public class NaviAdapter extends MyAdapter<Navi> {
 
-    private TagClickListener tagClickListener;
+    private TagNaviClickListener tagNaviClickListener;
 
     public NaviAdapter(@NonNull Context context) {
         super(context);
@@ -71,11 +71,11 @@ public class NaviAdapter extends MyAdapter<Navi> {
                 }
             });
             tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
-                if (tagClickListener != null) {
+                if (tagNaviClickListener != null) {
                     //TODO remove
                     //Article article = getArticle(navi, tagNames[position1]);
                     //String link = article == null ? "" : article.getLink();
-                    tagClickListener.getTreeLlink(navi.getArticles().get(position).getLink());
+                    tagNaviClickListener.onNaviClicklink(navi.getArticles().get(position).getLink());
                 }
                 return false;
             });
@@ -97,8 +97,8 @@ public class NaviAdapter extends MyAdapter<Navi> {
         return article;
     }
 
-    public void setTagClickListener(TagClickListener tagClickListener) {
-        this.tagClickListener = tagClickListener;
+    public void setTagNaviClickListener(TagNaviClickListener tagNaviClickListener) {
+        this.tagNaviClickListener = tagNaviClickListener;
     }
 
     @Override
