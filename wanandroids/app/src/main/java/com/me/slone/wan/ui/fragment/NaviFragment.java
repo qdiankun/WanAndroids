@@ -1,14 +1,20 @@
 package com.me.slone.wan.ui.fragment;
 
+import android.content.Intent;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.me.slone.wan.R;
 import com.me.slone.wan.base.MyFragment;
+import com.me.slone.wan.bean.Article;
 import com.me.slone.wan.bean.Navi;
+import com.me.slone.wan.common.Constants;
 import com.me.slone.wan.contract.NaviContract;
 import com.me.slone.wan.presenter.NaviPresenter;
+import com.me.slone.wan.ui.activity.WebActivity;
 import com.me.slone.wan.ui.adapter.Nav2Adapter;
 import com.me.slone.wan.ui.adapter.NaviAdapter;
+import com.me.slone.wan.ui.inter.TagClickListener;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -48,11 +54,10 @@ public class NaviFragment extends MyFragment implements NaviContract.View {
         mAdapter = new NaviAdapter(mActivity);
         mList = new ArrayList<>();
         mAdapter.setData(mList);
-        mAdapter.setOnItemClickListener((recyclerView, itemView, position) -> {
-//            Article article = mList.get(position);
-//            Intent intent = new Intent(mActivity, WebActivity.class);
-//            intent.putExtra(Constants.ARG_URL,article.getLink());
-//            mActivity.startActivity(intent);
+        mAdapter.setTagClickListener(link -> {
+        Intent intent = new Intent(mActivity, WebActivity.class);
+        intent.putExtra(Constants.ARG_URL,link);
+        mActivity.startActivity(intent);
         });
 
         mNav2Adapter = new Nav2Adapter(R.layout.rv_tree_item,mList);

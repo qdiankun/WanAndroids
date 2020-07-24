@@ -4,6 +4,7 @@ import com.me.slone.wan.bean.Article;
 import com.me.slone.wan.bean.BannerData;
 import com.me.slone.wan.bean.MoreArticle;
 import com.me.slone.wan.bean.Navi;
+import com.me.slone.wan.bean.Tree;
 import com.me.slone.wan.network.response.Response;
 import com.me.slone.wan.network.response.ResponseCode;
 
@@ -47,5 +48,13 @@ public interface Request {
      */
     @GET("/navi/json")
     Observable<Response<List<Navi>>> getNavi();
+
+
+    /**
+     * 体系数据
+     */
+    @GET("/tree/json")
+    Observable<Response<List<Tree>>> getTrees();
+
 
 }

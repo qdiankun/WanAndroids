@@ -12,57 +12,54 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.me.slone.wan.R;
 import com.me.slone.wan.base.MyAdapter;
-import com.me.slone.wan.bean.Article;
-import com.me.slone.wan.bean.Navi;
+import com.me.slone.wan.bean.Children;
+import com.me.slone.wan.bean.Tree;
 import com.me.slone.wan.ui.inter.TagClickListener;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 /**
  * Author：diankun
- * Time：20-7-21 上午10:39
+ * Time：20-7-23 下午4:59
  * Description:
  */
-public class NaviAdapter extends MyAdapter<Navi> {
+public class TreeAdapter extends MyAdapter<Tree> {
 
     private TagClickListener tagClickListener;
 
-    public NaviAdapter(@NonNull Context context) {
+    public TreeAdapter(@NonNull Context context) {
         super(context);
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ArticleHolder();
+        return new TreeHolder();
     }
 
-    final class ArticleHolder extends NaviAdapter.ViewHolder {
+    final class TreeHolder extends TreeAdapter.ViewHolder {
 
         @BindView(R.id.rv_tree_flow)
         TagFlowLayout tagFlowLayout;
         @BindView(R.id.rv_tree_tv_title)
         TextView tagTitle;
 
-
-        public ArticleHolder() {
-            super(R.layout.rv_navi_item);
+        public TreeHolder() {
+            super(R.layout.rv_tree_item);
         }
 
         @Override
         public void onBindView(int position) {
-            Navi navi = getItem(position);
-            tagTitle.setText(navi.getName());
-            String[] tagNames = new String[navi.getArticles().size()];
-            for (int i = 0; i < navi.getArticles().size(); i++) {
-                tagNames[i] = navi.getArticles().get(i).getTitle();
+            Tree tree = getItem(position);
+            tagTitle.setText(tree.getName());
+            String[] tagName = new String[tree.getChildren().size()];
+            for (int i = 0; i < tree.getChildren().size(); i++) {
+                tagName[i] = tree.getChildren().get(i).getName();
             }
-            tagFlowLayout.setAdapter(new TagAdapter<String>(tagNames) {
+            tagFlowLayout.setAdapter(new TagAdapter<String>(tagName) {
                 @Override
                 public View getView(FlowLayout parent, int position, String s) {
                     TextView tv = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.flow_tv_item, tagFlowLayout, false);
@@ -70,36 +67,17 @@ public class NaviAdapter extends MyAdapter<Navi> {
                     return tv;
                 }
             });
-            tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
-                if (tagClickListener != null) {
-                    //TODO remove
-                    //Article article = getArticle(navi, tagNames[position1]);
-                    //String link = article == null ? "" : article.getLink();
-                    tagClickListener.getTreeLlink(navi.getArticles().get(position).getLink());
+            tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+                @Override
+                public boolean onTagClick(View view, int position, FlowLayout parent) {
+                    if(tagClickListener!=null){
+                    }
+                    return false;
                 }
-                return false;
             });
         }
     }
 
-    private Article getArticle(Navi navi, String title) {
-        Article article = null;
-        List<Article> articles = navi.getArticles();
-        if (articles == null || articles.isEmpty()) {
-            return null;
-        }
-        for (Article article1 : articles) {
-            if (article1.getTitle().equals(title)) {
-                article = article1;
-                break;
-            }
-        }
-        return article;
-    }
-
-    public void setTagClickListener(TagClickListener tagClickListener) {
-        this.tagClickListener = tagClickListener;
-    }
 
     @Override
     protected RecyclerView.LayoutManager generateDefaultLayoutManager(Context context) {

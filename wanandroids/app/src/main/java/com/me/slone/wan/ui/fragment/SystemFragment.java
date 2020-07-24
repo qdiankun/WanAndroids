@@ -49,22 +49,22 @@ public class SystemFragment extends MyFragment {
             mTabLayout.addTab(mTabLayout.newTab());
         }
         mTabLayout.setupWithViewPager(mViewPager);
-//        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                mTitleBar.setLeftTitle(titleName[tab.getPosition()]);
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mTitleBar.setLeftTitle(titleName[tab.getPosition()]);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         mPagerAdapter = new BaseFragmentAdapter<>(this);
         mPagerAdapter.addFragment(NaviFragment.newInstance());
