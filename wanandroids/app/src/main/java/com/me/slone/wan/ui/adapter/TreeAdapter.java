@@ -68,7 +68,7 @@ public class TreeAdapter extends MyAdapter<Tree> {
             });
             tagFlowLayout.setOnTagClickListener((view, position1, parent) -> {
                 if(tagTreeClickListener!=null){
-                    tagTreeClickListener.onTreeClickListener(tree.getChildren().get(position));
+                    tagTreeClickListener.onTreeClickListener(tree);
                 }
                 return false;
             });

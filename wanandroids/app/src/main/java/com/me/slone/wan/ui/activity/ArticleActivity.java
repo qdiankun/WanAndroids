@@ -10,11 +10,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.hjq.bar.TitleBar;
 import com.me.slone.wan.R;
 import com.me.slone.wan.base.MyActivity;
-import com.me.slone.wan.bean.Children;
 import com.me.slone.wan.bean.Tree;
 import com.me.slone.wan.ui.adapter.FragmentAdapter;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class ArticleActivity extends MyActivity {
     @BindView(R.id.official_account_viewpager)
     ViewPager mVPager;
 
-    private Children mChildren;
+    private Tree mTree;
     private List<Fragment> mFragments = new ArrayList<>();
     private FragmentPagerAdapter mFragmentAdapter;
 
@@ -42,21 +40,20 @@ public class ArticleActivity extends MyActivity {
     protected void initView() {
 
         mTabLayout.setupWithViewPager(mVPager);
-        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(),mFragments);
+        mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
         mVPager.setAdapter(mFragmentAdapter);
         mVPager.setOffscreenPageLimit(mFragments.size());
     }
 
     @Override
-    protected void initData()
-    {
+    protected void initData() {
         Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
-            mChildren = (Children) bundle.getSerializable("children");
+        if (bundle != null) {
+            mTree = (Tree) bundle.getSerializable("tree");
         }
-        if(mChildren == null){
+        if (mTree == null) {
             finish();
         }
-        mTitleBar.setTitle(mChildren.getName());
+        mTitleBar.setTitle(mTree.getName());
     }
 }

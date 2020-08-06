@@ -12,8 +12,8 @@ public interface TagTreeClickListener {
 
     /**
      * 体系点击事件
-     * @param children
+     * @param tree
      */
-    void onTreeClickListener(Children children);
+    void onTreeClickListener(Tree tree);
 
 }

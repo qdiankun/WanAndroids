@@ -53,10 +53,10 @@ public class TreeFragment extends MyFragment implements TreeContract.View {
         mTreeAdapter = new TreeAdapter(mActivity);
         mTreeList = new ArrayList<>();
         mTreeAdapter.setData(mTreeList);
-        mTreeAdapter.setTagTreeClickListener(children -> {
+        mTreeAdapter.setTagTreeClickListener(tree -> {
             Intent intent = new Intent(mActivity,ArticleActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putSerializable("childre",children);
+            bundle.putSerializable("tree",tree);
             intent.putExtras(bundle);
             startActivity(intent);
         });

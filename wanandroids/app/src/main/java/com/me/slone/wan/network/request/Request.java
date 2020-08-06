@@ -2,6 +2,7 @@ package com.me.slone.wan.network.request;
 
 import com.me.slone.wan.bean.Article;
 import com.me.slone.wan.bean.BannerData;
+import com.me.slone.wan.bean.Content;
 import com.me.slone.wan.bean.MoreArticle;
 import com.me.slone.wan.bean.Navi;
 import com.me.slone.wan.bean.Tree;
@@ -29,6 +30,7 @@ public interface Request {
 
     /**
      * 置顶文章
+     *
      * @return
      */
     @GET("/article/top/json")
@@ -37,6 +39,7 @@ public interface Request {
 
     /**
      * 更多文章
+     *
      * @return
      */
     @GET("/article/list/{page}/json")
@@ -56,5 +59,11 @@ public interface Request {
     @GET("/tree/json")
     Observable<Response<List<Tree>>> getTrees();
 
+
+    /**
+     * 获取体系具体内容
+     */
+    @GET("article/list/{page}/json?cid={cid}")
+    Observable<Response<Content>> getContent(@Path("page") int page, @Path("cid") int childId);
 
 }
