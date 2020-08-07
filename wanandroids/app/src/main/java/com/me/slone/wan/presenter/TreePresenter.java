@@ -26,7 +26,7 @@ public class TreePresenter extends BasePresenter<TreeContract.View> implements T
                 .getTrees()
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxSchedulersHelper.applySchedulers())
-                .subscribe(new ProgressSubscriber<List<Tree>>(mView.getContext(), false) {
+                .subscribe(new ProgressSubscriber<List<Tree>>(mView.getViewContext(), false) {
                     @Override
                     public void success(List<Tree> treeList) {
                         KLog.i("treeList " + treeList.size());

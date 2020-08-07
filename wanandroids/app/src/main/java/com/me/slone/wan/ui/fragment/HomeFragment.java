@@ -198,7 +198,7 @@ public class HomeFragment extends MyFragment implements HomeContract.View {
 
     @Nullable
     @Override
-    public Context getContext() {
+    public Context getViewContext() {
         return mActivity;
     }
 }

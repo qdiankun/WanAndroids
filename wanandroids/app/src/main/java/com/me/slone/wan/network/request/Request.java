@@ -14,6 +14,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Author：diankun
@@ -62,8 +63,10 @@ public interface Request {
 
     /**
      * 获取体系具体内容
+     *
+     * https://www.wanandroid.com/article/list/0/json?cid=60
      */
-    @GET("article/list/{page}/json?cid={cid}")
-    Observable<Response<Content>> getContent(@Path("page") int page, @Path("cid") int childId);
+    @GET("article/list/{page}/json")
+    Observable<Response<Content>> getContent(@Path("page") int page, @Query("cid") int childId);
 
 }

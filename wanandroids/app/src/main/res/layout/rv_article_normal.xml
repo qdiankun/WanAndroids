@@ -29,7 +29,6 @@
                 android:id="@+id/rv_article_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="9dp"
                 android:background="@color/bg_rv_item_tv"
@@ -126,3 +125,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
+
+

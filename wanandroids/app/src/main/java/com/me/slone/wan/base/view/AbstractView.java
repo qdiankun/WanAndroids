@@ -39,5 +39,5 @@ public interface AbstractView {
     /**
      * return context
      */
-    Context getContext();
+    Context getViewContext();
 }

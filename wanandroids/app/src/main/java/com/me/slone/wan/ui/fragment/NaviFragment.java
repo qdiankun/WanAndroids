@@ -1,5 +1,6 @@
 package com.me.slone.wan.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -118,5 +119,10 @@ public class NaviFragment extends MyFragment implements NaviContract.View {
     @Override
     public void reload() {
 
+    }
+
+    @Override
+    public Context getViewContext() {
+        return getContext();
     }
 }

@@ -19,4 +19,12 @@ public class Tags {
     public String getUrl() {
         return url;
     }
+
+    @Override
+    public String toString() {
+        return "Tags{" +
+                "name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

@@ -96,7 +96,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View> implements H
                 .getArticle(page)
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxSchedulersHelper.applySchedulers())
-                .subscribe(new ProgressSubscriber<MoreArticle>(mView.getContext(), false) {
+                .subscribe(new ProgressSubscriber<MoreArticle>(mView.getViewContext(), false) {
                     @Override
                     public void success(MoreArticle moreArticle) {
                         mView.refreshMoreArticle(moreArticle);

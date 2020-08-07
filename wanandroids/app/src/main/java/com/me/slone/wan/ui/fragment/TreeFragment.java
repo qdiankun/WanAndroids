@@ -1,5 +1,6 @@
 package com.me.slone.wan.ui.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -119,5 +120,10 @@ public class TreeFragment extends MyFragment implements TreeContract.View {
     @Override
     public void reload() {
 
+    }
+
+    @Override
+    public Context getViewContext() {
+        return getContext();
     }
 }

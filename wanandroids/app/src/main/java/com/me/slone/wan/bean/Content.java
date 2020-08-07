@@ -82,4 +82,17 @@ public class Content {
     public int getTotal() {
         return total;
     }
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "curPage=" + curPage +
+                ", datas=" + datas +
+                ", offset=" + offset +
+                ", over=" + over +
+                ", pageCount=" + pageCount +
+                ", size=" + size +
+                ", total=" + total +
+                '}';
+    }
 }

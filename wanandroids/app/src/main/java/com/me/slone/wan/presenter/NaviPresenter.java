@@ -25,7 +25,7 @@ public class NaviPresenter extends BasePresenter<NaviContract.View> implements N
                 .getNavi()
                 .compose(ResponseTransformer.handleResult())
                 .compose(RxSchedulersHelper.applySchedulers())
-                .subscribe(new ProgressSubscriber<List<Navi>>(mView.getContext(), false) {
+                .subscribe(new ProgressSubscriber<List<Navi>>(mView.getViewContext(), false) {
                     @Override
                     public void success(List<Navi> naviList) {
                         KLog.i("naviList " + naviList.size());
